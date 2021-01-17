@@ -1,2 +1,2 @@
 # TerminalGradient
-A very simple tool to create banner/text gradients for your terminal.
+This is a simple program to add a gradient to whatever text file you want, it uses the Bresenham's line algorithm to fade the colors.
