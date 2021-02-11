@@ -31,23 +31,6 @@ func ToRGB(h string)(c Color,err error){
   return
 }
 
-func To256Ansi(R,G,B int)int{
-  if R == G && R == B && G == B{
-    if R < 8.0{
-      return 16
-    } else if R > 248{
-      return 231
-    } else {
-      return ((R-8)/247)*24 + 232
-    }
-  }
-
-  r := (R*5)/255
-  g := (G*5)/255
-  b := (B*5)/255
-  return 16+36*r+6*g+b
-}
-
 // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 func Bresenham(s,e float64,steps int)[]int{
   delta   := (e-s)/(float64(steps)-1)
@@ -82,7 +65,7 @@ func Gradient(c1,c2 Color,n int)([]int,[]int,[]int){
 }
 
 func Colorize(text string,r,g,b int)string{
-  fg := fmt.Sprintf("\x1b[38;5;%dm",To256Ansi(r,g,b))
+  fg := fmt.Sprintf("\x1b[38;2;%d;%d;%dm",r,g,b)
   return fg+text+"\x1b[0m"
 }
 
